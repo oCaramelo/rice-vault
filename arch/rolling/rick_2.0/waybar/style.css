@@ -1,0 +1,261 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: rgba(38, 44, 58, 0.55); /* #262C3A, translucent to blend with wallpaper */
+    border-bottom: none;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+button {
+    box-shadow: inset 0 -3px transparent;
+    border: none;
+    border-radius: 0;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 -2px #AADBE9;
+}
+
+/* Workspaces */
+#workspaces {
+    margin: 0 4px;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: #ffffff;
+    border-radius: 6px;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+    background-color: #AADBE9;
+    color: #262C3A;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+    color: #ffffff;
+}
+
+#submap {
+    background-color: rgba(170, 219, 233, 0.15);
+    color: #AADBE9;
+    padding: 0 10px;
+    margin: 0 4px;
+    border-radius: 6px;
+}
+
+/* Baseline for every remaining module: transparent, white text */
+#idle_inhibitor,
+#privacy,
+#pulseaudio,
+#custom-mic,
+#bluetooth,
+#network,
+#battery,
+#power-profiles-daemon,
+#clock,
+#custom-weather,
+#custom-power {
+    padding: 0 10px;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+/*
+ * "Clickable" affordance: a thin underline in the Hyprland active-border
+ * teal (blend of the #33ccff -> #00ff99 gradient used for focused windows),
+ * on every module that actually reacts to a click/scroll. Background stays
+ * transparent -- only the underline signals interactivity.
+ */
+#idle_inhibitor,
+#pulseaudio,
+#custom-mic,
+#power-profiles-daemon,
+#battery,
+#clock,
+#custom-power,
+#bluetooth,
+#network,
+#custom-weather {
+    box-shadow: inset 0 -2px rgba(102, 230, 204, 0.55);
+}
+
+#idle_inhibitor:hover,
+#pulseaudio:hover,
+#custom-mic:hover,
+#power-profiles-daemon:hover,
+#battery:hover,
+#clock:hover,
+#custom-power:hover,
+#bluetooth:hover,
+#network:hover,
+#custom-weather:hover {
+    box-shadow: inset 0 -2px #66e6cc;
+    background-color: rgba(102, 230, 204, 0.08);
+}
+
+#idle_inhibitor.activated {
+    color: #AADBE9;
+}
+
+/* Privacy indicators (mic / camera / screen-share in use) */
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 6px;
+    margin: 0 2px;
+    border-radius: 4px;
+    color: #262C3A;
+}
+
+#privacy-item.screenshare {
+    background-color: #EBD7CE;
+}
+
+#privacy-item.audio-in {
+    background-color: #AADBE9;
+}
+
+#privacy-item.audio-out {
+    background-color: #98F1DD;
+}
+
+/*
+ * Compact audio cluster: pulseaudio (speaker, scroll to adjust, click for
+ * pavucontrol) + custom-mic (scroll to adjust, click to mute) + bluetooth,
+ * placed side by side with tight spacing so they read as one group.
+ */
+#pulseaudio,
+#custom-mic,
+#bluetooth {
+    padding: 0 6px;
+}
+
+#pulseaudio {
+    color: #98F1DD;
+    padding-left: 10px;
+}
+
+#pulseaudio.muted {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#custom-mic {
+    color: #98F1DD;
+}
+
+#custom-mic.muted {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#bluetooth {
+    color: #ffffff;
+    padding-right: 10px;
+}
+
+#bluetooth.connected {
+    color: #AADBE9;
+}
+
+#bluetooth.disabled {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Network: icon only, details on hover tooltip */
+#network {
+    color: #AADBE9;
+}
+
+#network.disconnected {
+    color: #f53c3c;
+}
+
+/* Battery + power profile, side by side */
+#battery {
+    color: #EBD7CE;
+}
+
+#battery.warning:not(.charging) {
+    color: #f0932b;
+}
+
+@keyframes blink {
+    to {
+        color: #ffffff;
+        background-color: #f53c3c;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    border-radius: 6px;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #98F1DD;
+}
+
+#power-profiles-daemon {
+    color: #EBD7CE;
+}
+
+#power-profiles-daemon.performance {
+    color: #f53c3c;
+}
+
+#power-profiles-daemon.balanced {
+    color: #AADBE9;
+}
+
+#power-profiles-daemon.power-saver {
+    color: #98F1DD;
+}
+
+#clock {
+    color: #EBD7CE;
+}
+
+#custom-weather {
+    color: #EBD7CE;
+}
+
+/* Power button */
+#custom-power {
+    color: #ffffff;
+}
+
+#custom-power:hover {
+    color: #f53c3c;
+    box-shadow: inset 0 -2px #f53c3c;
+}

@@ -19,4 +19,5 @@ Each `<config-name>/` folder is self-contained: it has its own `README.md` and
 
 ## Current configs
 
+- [`arch/rolling/rick_2.0`](arch/rolling/rick_2.0) — Hyprland, waybar, rofi, kitty, fastfetch, ble.sh, bash
 - [`ubuntu/26.04/rick`](ubuntu/26.04/rick) — kitty, fastfetch, ble.sh, bash, desktop background

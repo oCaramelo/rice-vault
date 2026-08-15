@@ -1,0 +1,152 @@
+/*
+ * Theme matched to the waybar / Hyprland palette:
+ *  - bg   #262C3A  (waybar window background)
+ *  - fg   #ffffff
+ *  - teal #66e6cc / #98F1DD  (waybar hover + accent)
+ *  - blue #AADBE9  (waybar active workspace)
+ *  - border gradient reference: #33ccff -> #00ff99 (Hyprland active border)
+ */
+
+* {
+    bg:          #262C3Add;  /* translucent, matches waybar */
+    bg-alt:      #2f3646ee;
+    fg:          #ffffffff;
+    fg-dim:      #ffffffaa;
+    accent:      #66e6ccff;
+    accent-dim:  #66e6cc33;
+    selected:    #AADBE9ff;
+    urgent:      #eb4d4bff;
+
+    background-color: transparent;
+    text-color:        @fg;
+}
+
+window {
+    location:     center;
+    anchor:       center;
+    width:        32%;
+    x-offset:     0;
+    y-offset:     -6%;
+
+    background-color: @bg;
+    border:            2px;
+    border-color:      @accent;
+    border-radius:     14px;
+    padding:           14px;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing:           10px;
+    children:           [ inputbar, listview ];
+}
+
+inputbar {
+    background-color: @bg-alt;
+    text-color:        @fg;
+    border-radius:      10px;
+    padding:            10px 14px;
+    spacing:            8px;
+    children:           [ prompt, entry ];
+}
+
+prompt {
+    text-color:  @accent;
+    font:        "JetBrainsMono Nerd Font Bold 11";
+}
+
+entry {
+    placeholder:       "Search...";
+    placeholder-color: @fg-dim;
+    text-color:        @fg;
+}
+
+listview {
+    background-color: transparent;
+    columns:            1;
+    lines:              8;
+    spacing:            4px;
+    cycle:              true;
+    dynamic:            true;
+    scrollbar:          false;
+    fixed-height:       false;
+}
+
+element {
+    background-color: transparent;
+    text-color:        @fg;
+    border-radius:      8px;
+    padding:            8px 10px;
+    spacing:            10px;
+    orientation:        horizontal;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color:        @fg;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color:        @fg;
+}
+
+element selected.normal {
+    background-color: @accent-dim;
+    text-color:        @selected;
+    border:            0px 0px 0px 3px;
+    border-color:      @accent;
+}
+
+element urgent.normal,
+element selected.urgent {
+    background-color: @urgent;
+    text-color:        @fg;
+}
+
+element-icon {
+    size:         1.4em;
+    vertical-align: 0.5;
+}
+
+element-text {
+    vertical-align: 0.5;
+    horizontal-align: 0;
+}
+
+mode-switcher {
+    background-color: transparent;
+    spacing:            6px;
+}
+
+button {
+    background-color: @bg-alt;
+    text-color:         @fg-dim;
+    border-radius:       10px;
+    padding:             6px 0px;
+    horizontal-align:    0.5;
+}
+
+button selected {
+    background-color: @accent-dim;
+    text-color:         @accent;
+}
+
+message {
+    background-color: @bg-alt;
+    border-radius:      10px;
+    padding:            8px 10px;
+}
+
+textbox {
+    text-color: @fg;
+}
+
+error-message {
+    background-color: @bg;
+    text-color:         @urgent;
+    border:             2px;
+    border-color:       @urgent;
+    border-radius:      14px;
+    padding:            14px;
+}
