@@ -96,6 +96,31 @@ show_gif() {
     printf '\e[H' > "$TTY_PATH"
 }
 
+is_at_prompt() {
+    # kitty's shell-integration tracks whether this window is sitting at
+    # its shell prompt vs running a foreground program. We only want the
+    # idle GIF over a genuinely idle prompt, never layered on top of 
+    # something the user is actively using but just not typing into at
+    # this instant.
+    local v
+    v=$(kitty @ ls 2>/dev/null | python3 -c '
+import json, sys
+wid = int(sys.argv[1])
+try:
+    data = json.load(sys.stdin)
+except Exception:
+    sys.exit(1)
+for osw in data:
+    for tab in osw.get("tabs", []):
+        for w in tab.get("windows", []):
+            if w.get("id") == wid:
+                print("1" if w.get("at_prompt") else "0")
+                sys.exit(0)
+sys.exit(1)
+' "$KITTY_WINDOW_ID")
+    [ "$v" = "1" ]
+}
+
 shell_pid() {
     kitty @ ls 2>/dev/null | python3 -c '
 import json, sys
@@ -137,7 +162,7 @@ while true; do
     printf -v now '%(%s)T' -1  # bash builtin, avoids forking `date` every tick
     idle=$(( now - atime ))
 
-    if (( idle >= IDLE_SECONDS && shown == 0 )); then
+    if (( idle >= IDLE_SECONDS && shown == 0 )) && is_at_prompt; then
         show_gif && shown=1
     elif (( idle < IDLE_SECONDS && shown == 1 )); then
         hide_gif
