@@ -177,3 +177,5 @@ if [ -n "${KITTY_LISTEN_ON:-}" ] && [ -x "$HOME/.local/bin/kitty-idle-gif.sh" ];
     fi
     unset _idle_gif_tty
 fi
+
+. "$HOME/.local/share/../bin/env"

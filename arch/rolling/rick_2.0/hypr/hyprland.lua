@@ -681,20 +681,27 @@ hl.window_rule({
     no_focus = true,
 })
 
--- Firefox and VSCode always open on their own dedicated workspace,
--- switching the view there, regardless of how they were launched.
+-- Firefox, VSCode and the file manager always open on the next empty
+-- workspace, switching the view there, regardless of how they were launched.
 hl.window_rule({
     name  = "firefox-workspace",
     match = { class = "^firefox$" },
 
-    workspace = "2",
+    workspace = "empty",
 })
 
 hl.window_rule({
     name  = "vscode-workspace",
     match = { class = "^code$" },
 
-    workspace = "3",
+    workspace = "empty",
+})
+
+hl.window_rule({
+    name  = "filemanager-workspace",
+    match = { class = "^org.kde.dolphin$" },
+
+    workspace = "empty",
 })
 
 -- Layer rules also return a handle.
