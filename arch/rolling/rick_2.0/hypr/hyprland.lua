@@ -556,6 +556,12 @@ hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+
+-- Screenshots: PRINT = full (active monitor), SHIFT + PRINT = area select.
+-- Saved to ~/media/screenshots, copied to clipboard, notified via dunst.
+hl.bind("Print",          hl.dsp.exec_cmd("bash ~/.config/hypr/scripts/screenshot.sh full"), { locked = true })
+hl.bind("SHIFT + Print",  hl.dsp.exec_cmd("bash ~/.config/hypr/scripts/screenshot.sh area"),  { locked = true })
+
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
@@ -681,8 +687,8 @@ hl.window_rule({
     no_focus = true,
 })
 
--- Firefox, VSCode and the file manager always open on the next empty
--- workspace, switching the view there, regardless of how they were launched.
+-- Firefox, VSCode, the file manager and zathura always open on the next
+-- empty workspace, switching the view there, regardless of how they were launched.
 hl.window_rule({
     name  = "firefox-workspace",
     match = { class = "^firefox$" },
@@ -699,7 +705,17 @@ hl.window_rule({
 
 hl.window_rule({
     name  = "filemanager-workspace",
-    match = { class = "^org.kde.dolphin$" },
+    -- float = false excludes Dolphin's own dialogs/popups (Open With, properties,
+    -- copy progress, etc.) which share the same class but open floating — they
+    -- should stay on the current workspace instead of jumping to a new empty one.
+    match = { class = "^org.kde.dolphin$", float = false },
+
+    workspace = "empty",
+})
+
+hl.window_rule({
+    name  = "zathura-workspace",
+    match = { class = "^org.pwmt.zathura$" },
 
     workspace = "empty",
 })
