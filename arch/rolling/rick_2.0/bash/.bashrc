@@ -165,7 +165,7 @@ if type blehook >/dev/null 2>&1; then
     }
 fi
 
-# kitty: play an idle GIF (centered, full window height) after 30s with no
+# kitty: play an idle GIF (centered, full window height) after 5m with no
 # keystrokes in this window. Launched inside a throwaway subshell so it's
 # never registered in this shell's (or ble.sh's) job table - no "[1] ..."
 # announcement on open. It exits on its own once its tty disappears, so it

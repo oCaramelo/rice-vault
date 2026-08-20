@@ -67,7 +67,6 @@ button:hover {
 }
 
 /* Baseline for every remaining module: transparent, white text */
-#idle_inhibitor,
 #privacy,
 #pulseaudio,
 #custom-mic,
@@ -89,7 +88,6 @@ button:hover {
  * on every module that actually reacts to a click/scroll. Background stays
  * transparent -- only the underline signals interactivity.
  */
-#idle_inhibitor,
 #pulseaudio,
 #custom-mic,
 #power-profiles-daemon,
@@ -102,7 +100,6 @@ button:hover {
     box-shadow: inset 0 -2px rgba(102, 230, 204, 0.55);
 }
 
-#idle_inhibitor:hover,
 #pulseaudio:hover,
 #custom-mic:hover,
 #power-profiles-daemon:hover,
@@ -114,10 +111,6 @@ button:hover {
 #custom-weather:hover {
     box-shadow: inset 0 -2px #66e6cc;
     background-color: rgba(102, 230, 204, 0.08);
-}
-
-#idle_inhibitor.activated {
-    color: #AADBE9;
 }
 
 /* Privacy indicators (mic / camera / screen-share in use) */

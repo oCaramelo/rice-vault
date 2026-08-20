@@ -687,7 +687,7 @@ hl.window_rule({
     no_focus = true,
 })
 
--- Firefox, VSCode, the file manager and zathura always open on the next
+-- Firefox, VSCode, OBS, the file manager and zathura always open on the next
 -- empty workspace, switching the view there, regardless of how they were launched.
 hl.window_rule({
     name  = "firefox-workspace",
@@ -698,7 +698,14 @@ hl.window_rule({
 
 hl.window_rule({
     name  = "vscode-workspace",
-    match = { class = "^code$" },
+    match = { class = "^code$", float = false },
+
+    workspace = "empty",
+})
+
+hl.window_rule({
+    name  = "obs-workspace",
+    match = { class = "^com.obsproject.Studio$" },
 
     workspace = "empty",
 })

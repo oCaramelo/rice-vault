@@ -29,7 +29,7 @@
 set -u
 
 GIF="$HOME/.config/kitty/assets/rick_tinker.gif"
-IDLE_SECONDS=30
+IDLE_SECONDS=300
 POLL_IDLE=2      # how often to check while waiting to cross IDLE_SECONDS
 POLL_ACTIVE=0.2  # how often to check while the GIF is showing, so resuming
                  # activity clears it almost instantly instead of lagging

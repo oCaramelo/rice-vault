@@ -12,7 +12,6 @@
     ],
     "modules-center": [],
     "modules-right": [
-        "idle_inhibitor",
         "privacy",
         "pulseaudio",
         "custom/mic",
@@ -34,13 +33,6 @@
     },
     "hyprland/submap": {
         "format": "<span style=\"italic\">{}</span>"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
     },
     "privacy": {
         "icon-spacing": 4,
